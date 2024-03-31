@@ -1,0 +1,1 @@
+# magic-store-admin-api
