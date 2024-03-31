@@ -82,9 +82,9 @@ async def login(request: Request):
 async def user_info(user=Depends(manager)):
     # return {"code": 0, "data": user, "message": "获取用户详情成功"}
     if user.is_admin:
-        return {"code": 0, "data": {"username": user.username, "roles": ["admin"]}, "message": "获取用户详情成功"}
+        return {"code": 0, "data": {"username": user.email, "roles": ["admin"]}, "message": "获取用户详情成功"}
     else:
-        return {"code": 0, "data": {"username": user.username, "roles": ["editor"]}, "message": "获取用户详情成功"}
+        return {"code": 0, "data": {"username": user.email, "roles": ["editor"]}, "message": "获取用户详情成功"}
 
 @app.get("/private")
 def private_route(user=Depends(manager)):
@@ -130,4 +130,4 @@ def get_members(query: str = None, db=Depends(get_db)):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app:app")
+    uvicorn.run("app:app", host="0.0.0.0", port=8000)
